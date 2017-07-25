@@ -673,6 +673,9 @@ module.exports.adminBoot = function adminBoot(server, userAuth, userModelName, t
 				}
 				else {
 					if (properties[key].type.name) {
+					      if(properties[key].type.name==='GeoPoint')
+						result[key].type = 'Object';
+					      else
 						result[key].type = properties[key].type.name;
 					}
 					else if (properties[key].type instanceof Array) {
@@ -768,6 +771,9 @@ module.exports.adminBoot = function adminBoot(server, userAuth, userModelName, t
 				type = 'number';
 			}
 			if (type === 'Object') {
+				type = 'textarea';
+			}
+			if (type === 'GeoPoint') {
 				type = 'textarea';
 			}
 			if (type === 'Array') {
